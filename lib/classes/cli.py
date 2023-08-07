@@ -7,7 +7,7 @@ from password_generator import PasswordGenerator
 
 Base = declarative_base()
 
-# data models
+# data model
 class PasswordStorage(Base):
         __tablename__ = 'passwords'
 
@@ -26,12 +26,12 @@ if __name__ == '__main__':
         Session = sessionmaker(bind=engine)
         session = Session()
         
-def userInterface(): 
+def mainMenu(): 
         print('Welcome to the Python Password Protector. What would you like to do?')
         action = input(f"Create or Manage: ")
 
         if action.lower() == "manage":
-                print("Accessing credentials database...")
+                pass
                 #Link function here to produce a list of current logins 
 
         elif action.lower() == "create":
@@ -51,6 +51,11 @@ def userInterface():
 
                 session.add(new_password)
                 session.commit() 
+                
+                print("... \n"
+                      "... \n"
+                      "... \n")
+                mainMenu()
 
 
-userInterface()
+mainMenu()
