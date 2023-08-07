@@ -2,8 +2,9 @@
 
 ## App Goals
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+- User is able to access a stored database of usernames and passwords
+- User is able to generate new secure passwords and save for future use. 
+- User is able to access and change the database of stored login credentials. 
 
 ***
 
