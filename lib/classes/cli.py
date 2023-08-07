@@ -25,19 +25,7 @@ if __name__ == '__main__':
         Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
         session = Session()
-
-        # example_password = PasswordStorage(
-        #         username = "wchang",
-        #         password = "efoijs", 
-        #         platform = "Facebook"
-        # )
-        # session.add(example_password)
-
-        # example = session.query(PasswordStorage).first()
-        # session.delete(example)
-        # session.commit()
         
-
 def userInterface(): 
         print('Welcome to the Python Password Protector. What would you like to do?')
         action = input(f"Create or Manage: ")
@@ -51,7 +39,7 @@ def userInterface():
                 platform = input(f"What platform will this login be for? ")
                 password = PasswordGenerator().password_gen()
 
-                print(f"Here is a secure password for your account on {platform} for account username {username}.")
+                print(f"Here is a secure password for your {platform} account for username {username}.")
                 print(f"{password}")
 
                 
