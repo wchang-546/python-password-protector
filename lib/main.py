@@ -18,36 +18,42 @@ if __name__ == '__main__':
         def mainMenu(): 
                 print('Welcome to the Python Password Protector. What would you like to do?')
                 action = input("Create or Manage: ")
-
+                
+                # action3 = input("Please enter the correct password: ")
                 if action.lower() == "manage":
-                        print('Would you like to view or update logins?')
-                        action = input("View or Update: ")
-                        
-                        if action.lower() == "view":
-                                #Function to print all of the logins
-                                PasswordStorage.showAll()
-                        
-                        if action.lower() == "update":
-                                PasswordStorage.showAll()
-                                print('Which login would you like to update?')
+                        userpass = "abc"
+                        action2 = input("Enter your password: ")
+                        if action2 != userpass:  
+                                print("Invalid credentials. Your harddrive will be deleted.")
+                        else:
+                                print('Would you like to view or update logins?')
+                                action = input("View or Update: ")
+                                
+                                if action.lower() == "view":
+                                        #Function to print all of the logins
+                                        PasswordStorage.showAll()
+                                
+                                if action.lower() == "update":
+                                        PasswordStorage.showAll()
+                                        print('Which login would you like to update?')
 
-                                edit_login = input('Enter ID: ')
+                                        edit_login = input('Enter ID: ')
 
-                                username = session.query(PasswordStorage).filter(PasswordStorage.username)
-                                platform = session.query(PasswordStorage).filter(PasswordStorage.platform)
-                                print(f'You have selected the login for {username} on {platform}')
+                                        username = session.query(PasswordStorage).filter(PasswordStorage.username)
+                                        platform = session.query(PasswordStorage).filter(PasswordStorage.platform)
+                                        print(f'You have selected the login for {username} on {platform}')
 
-                                #Thinking update options will be to Regenerate password or Delete login 
-                                if action.lower() == "Regenerate password":
-                                        pass
+                                        #Thinking update options will be to Regenerate password or Delete login 
+                                        if action.lower() == "Regenerate password":
+                                                pass
 
-                                if action.lower() == "Delete password":
-                                        to_delete = session.query(PasswordStorage).filter(PasswordStorage.id.like({edit_id}))
+                                        if action.lower() == "Delete password":
+                                                to_delete = session.query(PasswordStorage).filter(PasswordStorage.id.like({edit_id}))
 
-                        print("... \n"
-                        "... \n"
-                        "... \n")
-                        mainMenu()
+                                # print("... \n"
+                                # "... \n"
+                                # "... \n")
+                                mainMenu()
 
                 elif action.lower() == "create":
                         new_password = PasswordGenerator().password_gen()
