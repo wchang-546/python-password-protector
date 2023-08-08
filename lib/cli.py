@@ -4,6 +4,7 @@
 from sqlalchemy import (create_engine, Column, Integer, String)
 from sqlalchemy.orm import (declarative_base, sessionmaker)
 from password_generator import PasswordGenerator
+from password_storage import PasswordStorage
 
 Base = declarative_base()
 
@@ -17,11 +18,15 @@ if __name__ == '__main__':
         
 def mainMenu(): 
         print('Welcome to the Python Password Protector. What would you like to do?')
-        action = input(f"Create or Manage: ")
+        action = input("Create or Manage: ")
 
         if action.lower() == "manage":
+                print('Would you like to view or update logins?')
+                action = input("View or Update:")
+                all_logins = session.query(PasswordStorage)
+                if action.lower() == "view":
+                        print([login for login in all_logins])
                 
-                #Link function here to produce a list of current logins 
 
                 print("... \n"
                       "... \n"
