@@ -25,15 +25,16 @@ if __name__ == '__main__':
                         
                         if action.lower() == "view":
                                 #Function to print all of the logins
-                                # all_logins = session.query(PasswordStorage)
-                                # print([login for login in all_logins])
                                 PasswordStorage.showAll()
                         
                         if action.lower() == "update":
-                                print('What platform login would you like to update?')
-                                edit_login = input('Enter platform: ')
-                                platform = session.query(PasswordStorage).filter(PasswordStorage.platform)
+                                PasswordStorage.showAll()
+                                print('Which login would you like to update?')
+
+                                edit_login = input('Enter ID: ')
+
                                 username = session.query(PasswordStorage).filter(PasswordStorage.username)
+                                platform = session.query(PasswordStorage).filter(PasswordStorage.platform)
                                 print(f'You have selected the login for {username} on {platform}')
 
                                 #Thinking update options will be to Regenerate password or Delete login 
@@ -42,7 +43,6 @@ if __name__ == '__main__':
 
                                 if action.lower() == "Delete password":
                                         to_delete = session.query(PasswordStorage).filter(PasswordStorage.id.like({edit_id}))
-
 
                         print("... \n"
                         "... \n"

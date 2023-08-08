@@ -15,7 +15,7 @@ class PasswordStorage(Base):
         platform = Column(String())
 
         def __repr__(self): 
-                return f"Username: {self.username} Password: {self.password} Platform: {self.platform}"
+                return f"ID: {self.id} Username: {self.username} Password: {self.password} Platform: {self.platform}"
         
         def showAll():
                 # standard command for URL call assigned to engine to be used in the next line
@@ -37,11 +37,11 @@ class PasswordStorage(Base):
                 textTable = Texttable()
 
                 # creates TextTable headers that our data will be displayed under
-                textTable.header(['Username', 'Password', 'Platform'])
+                textTable.header(['ID', 'Username', 'Password', 'Platform'])
 
                 # loop that will create a new row from each username and password to be displayed
                 for datum in data:
-                        textTable.add_row([datum.username, datum.password, datum.platform])
+                        textTable.add_row([datum.id, datum.username, datum.password, datum.platform])
 
                 # print textTable with draw function to calculate then draw the table based on the data it is given
                 print(textTable.draw()) 
