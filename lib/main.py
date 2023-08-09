@@ -40,11 +40,17 @@ if __name__ == '__main__':
                                         login = session.query(PasswordStorage).get(edit_login)
                                         print(f'You have selected the login for {login.username} on the {login.platform} platform')
 
-                                        action = input('Regenerate password or Delete login: ')
-                                        if action.lower() == "regenerate password":
-                                                pass
+                                        action = input('Regenerate or Delete: ')
+                                        if action.lower() == "regenerate":
+                                                #Function to regenerate the password 
+                                                regenerated_password = PasswordGenerator().password_regenerate(login.username, login.platform)
+                                                session.delete(login)
+                                                session.add(regenerated_password)
+                                                session.commit()
+                                                print(f"The new login is username: {login.username}, password: {regenerated_password.password}, platform: {login.platform}")
 
-                                        if action.lower() == "delete login":
+
+                                        if action.lower() == "delete":
                                                 print(f'This login is now deleted: {login}')
                                                 session.delete(login)
                                                 session.commit()
