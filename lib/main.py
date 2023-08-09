@@ -19,7 +19,6 @@ if __name__ == '__main__':
                 print('Welcome to the Python Password Protector. What would you like to do?')
                 action = input("Create or Manage: ")
                 
-                # action3 = input("Please enter the correct password: ")
                 if action.lower() == "manage":
                         userpass = "abc"
                         action2 = input("Enter your password: ")
@@ -36,23 +35,24 @@ if __name__ == '__main__':
                                 if action.lower() == "update":
                                         PasswordStorage.showAll()
                                         print('Which login would you like to update?')
-
                                         edit_login = input('Enter ID: ')
 
-                                        username = session.query(PasswordStorage).filter(PasswordStorage.username)
-                                        platform = session.query(PasswordStorage).filter(PasswordStorage.platform)
-                                        print(f'You have selected the login for {username} on {platform}')
+                                        login = session.query(PasswordStorage).get(edit_login)
+                                        print(f'You have selected the login for {login.username} on the {login.platform} platform')
 
-                                        #Thinking update options will be to Regenerate password or Delete login 
-                                        if action.lower() == "Regenerate password":
+                                        action = input('Regenerate password or Delete login: ')
+                                        if action.lower() == "regenerate password":
                                                 pass
 
-                                        if action.lower() == "Delete password":
-                                                to_delete = session.query(PasswordStorage).filter(PasswordStorage.id.like({edit_id}))
+                                        if action.lower() == "delete login":
+                                                print(f'This login is now deleted: {login}')
+                                                session.delete(login)
+                                                session.commit()
 
-                                # print("... \n"
-                                # "... \n"
-                                # "... \n")
+
+                                print("... \n"
+                                "... \n"
+                                "... \n")
                                 mainMenu()
 
                 elif action.lower() == "create":
