@@ -1,7 +1,6 @@
-from sqlalchemy import (create_engine, Column, Integer, String)
+from sqlalchemy import (create_engine, Column, Integer, String, ForeignKey)
 from sqlalchemy.orm import (declarative_base, sessionmaker)
 from texttable import Texttable
-
 
 
 Base = declarative_base()
@@ -13,6 +12,7 @@ class PasswordStorage(Base):
         username = Column(String())
         password = Column(String()) 
         platform = Column(String())
+        user = Column(String(), ForeignKey("users.user"))
 
         def __repr__(self): 
                 return f"ID: {self.id} Username: {self.username} Password: {self.password} Platform: {self.platform}"

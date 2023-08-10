@@ -6,6 +6,7 @@ from sqlalchemy.orm import (declarative_base, sessionmaker)
 from password_generator import PasswordGenerator
 from password_storage import PasswordStorage
 from hide_passwords import HidePasswords
+from users import UserStorage
 
 Base = declarative_base()
 
@@ -17,7 +18,7 @@ if __name__ == '__main__':
         session = Session()
 
         def start_screen():
-                HidePasswords.showAll()
+                UserStorage.showAll()
                 print('Welcome to the Python Password Protector.')
         
         def login():

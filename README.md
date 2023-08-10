@@ -6,6 +6,8 @@
 - User is able to generate new secure passwords and save for future use. 
 - User is able to access and change the database of stored login credentials. 
 
+-- create new tables with password and platform using foreign keys to connect them with same key as id
+
 ***
 
 ## App Summary
