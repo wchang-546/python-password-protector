@@ -5,6 +5,7 @@ from sqlalchemy import (create_engine, Column, Integer, String)
 from sqlalchemy.orm import (declarative_base, sessionmaker)
 from password_generator import PasswordGenerator
 from password_storage import PasswordStorage
+from hide_passwords import HidePasswords
 
 Base = declarative_base()
 
@@ -14,9 +15,13 @@ if __name__ == '__main__':
         Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
         session = Session()
+
+        def start_screen():
+                HidePasswords.showAll()
+                print('Welcome to the Python Password Protector.')
         
         def login():
-                print('Welcome to the Python Password Protector. PLease enter your password:')
+                print('Please enter your password:')
                 userpass = "abc"
                 action = input("Enter your password: ")
                 if action != userpass:  
@@ -77,5 +82,5 @@ if __name__ == '__main__':
                         "... \n")
                         mainMenu()
 
-
+start_screen()
 login()
